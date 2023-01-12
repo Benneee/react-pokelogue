@@ -1,9 +1,9 @@
 import './Pokemon.css';
 import React from 'react';
 
-const Pokemon = ({ pokemon }) => {
+const Pokemon = ({ pokemon, onSelectPokemon }) => {
   return (
-    <div className="pokemon ui card">
+    <div className="pokemon ui card" onClick={() => onSelectPokemon(pokemon)}>
       <div className="image-container">
         <img src={pokemon.sprite} alt={pokemon.name} />
       </div>
