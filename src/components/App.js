@@ -50,7 +50,7 @@ class App extends React.Component {
     return (
       <div className="ui container" style={{ marginTop: '15px' }}>
         <SearchBar onQuerySubmitted={this.findPokemon} />
-        <div className="ui grid">
+        <div className="ui grid stackable">
           <div className="ui row">
             <div className="ten wide column">
               <PokemonList
