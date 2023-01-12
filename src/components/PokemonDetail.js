@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const PokemonDetail = (props) => {
-    return <div>PokemonDetail component</div>
-}
+const PokemonDetail = ({ pokemon }) => {
+  if (!pokemon) {
+    return <div>Loading pokemon data...</div>;
+  }
+
+  return <div>{pokemon.name}</div>;
+};
 
 export default PokemonDetail;
