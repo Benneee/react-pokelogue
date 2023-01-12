@@ -10,7 +10,7 @@ import {
 } from '../api/pokemonhelpers';
 
 class App extends React.Component {
-  state = { pokemons: [], selectedPokemon: null };
+  state = { pokemons: [], selectedPokemon: null, errorMessage: null };
 
   componentDidMount() {
     this.loadPokemons();
@@ -29,7 +29,7 @@ class App extends React.Component {
         };
       });
       this.setSelectedPokemon(pokemons[0]);
-      this.setState({ pokemons: pokemons });
+      this.setState({ pokemons: pokemons, errorMessage: null });
     }
   };
 
@@ -38,18 +38,27 @@ class App extends React.Component {
 
     if (response.status === 200) {
       const pokemonDetails = buildUpPokemonDetails(response.data);
-      this.setState({ selectedPokemon: pokemonDetails });
+      this.setState({ selectedPokemon: pokemonDetails, errorMessage: null });
     }
   };
 
-  findPokemon = (query) => {
-    console.log('query!: ', query);
+  findPokemon = async (query) => {
+    try {
+      const response = await pokemondata.get(`/pokemon/${query.toLowerCase()}`);
+      const pokemonDetails = buildUpPokemonDetails(response.data);
+      this.setState({ selectedPokemon: pokemonDetails, errorMessage: null });
+    } catch (error) {
+      this.setState({ errorMessage: 'Pokemon not found' });
+    }
   };
 
   render() {
     return (
       <div className="ui container" style={{ marginTop: '15px' }}>
         <SearchBar onQuerySubmitted={this.findPokemon} />
+        <p style={{ marginTop: '10px', color: 'red' }}>
+          {this.state.errorMessage}
+        </p>
         <div className="ui grid stackable">
           <div className="ui row">
             <div className="ten wide column">
