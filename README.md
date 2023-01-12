@@ -1,3 +1,7 @@
+# RunDown
+
+The react version of one of my favorite projects - pokelogue, other framework versions for this exist in [angular](https://github.com/Benneee/poke-logue) and [vue.js](https://github.com/Benneee/vue-pokelogue-v2).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
